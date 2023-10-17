@@ -1,0 +1,244 @@
+@font-face {
+    font-family: "spaceregular";
+    src: url("spacemono/SpaceMono-Regular.ttf");
+}
+
+@font-face {
+    font-family: "spacebold";
+    src: url("spacemono/SpaceMono-Bold.ttf");
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    font-size: 19px;
+}
+
+.app-0 {
+    font-family: "spaceregular";
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #ecf0f1;
+    z-index: 1;
+    filter: blur(0px);
+}
+
+.app-0 .app-1 {
+    width: 40%;
+    min-width: 700px;
+    max-width: 1200px;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-right: 1px solid #bdc3c7;
+}
+
+.app-0 .app-1 .path {
+    width: 20%;
+    height: 100vh;
+    border-left: 1px solid #bdc3c7;
+}
+
+.app-0 .app-1 .tile {
+    width: 20%;
+    height: 20vh;
+    position: absolute;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-0 .app-1 .tile .letter {
+    font-family: "spacebold";
+    font-size: 4rem;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+
+.app-2 {
+    font-family: "spacebold";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 3;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.app-2 .cont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-2 .span {
+    padding: 2rem;
+    margin-bottom: 1rem;
+}
+
+.app-2 .title {
+    font-size: 1rem;
+    color: #888;
+    line-height: 1rem;
+    text-transform: uppercase;
+}
+
+.app-2 .score {
+    font-size: 3rem;
+    color: #000;
+    line-height: 3rem;
+    text-transform: uppercase;
+    font-family: "spacebold";
+}
+
+.app-2 .cont .buttonspan {
+    width: 100%;
+}
+
+.app-2 .span button {
+    padding: 1rem 2rem;
+    width: 100%;
+    font-size: 2rem;
+    font-family: "spacebold";
+    color: #fff;
+    background-color: #2ecc71;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1), 0px 3px 5px rgba(0, 0, 0, 0.04);
+    text-transform: uppercase;
+    transition: 0.1s ease;
+}
+
+.app-2 .span button:hover {
+    background-color: #27ae60;
+    transform: translateY(-1px);
+}
+
+.app-2 .span button:active {
+    background-color: #2ecc71;
+    transform: translateY(1px);
+}
+
+.app-2 .footer {
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #3498db;
+    border-radius: 3px;
+}
+
+.app-2 .footer a {
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.1s ease;
+}
+
+.app-2 .footer a:hover {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.keyboard {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+    z-index: 5;
+    transform: translateY(100%);
+}
+
+.keyboard .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.keyboard .row .letter {
+    text-transform: uppercase;
+    text-align: center;
+    width: 10%;
+    padding: 1.5rem 0rem;
+    font-family: "spaceregular";
+    font-size: 1.2rem;
+}
+
+.keyboard .row .letter:active {
+    background-color: #222;
+}
+
+@media only screen and (max-width: 768px) {
+
+    html,
+    body {
+        font-size: 12px;
+    }
+
+    .app-2 {
+        padding: 2rem;
+        min-width: 90%;
+    }
+
+    .app-2 .span {
+        padding: 0rem;
+    }
+
+    .app-2 .cont {
+        flex-wrap: wrap;
+    }
+
+    .app-2 .cont .buttonspan {
+        width: 100%;
+    }
+
+    .app-0 .app-1 {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .app-2 .footer {
+        flex-wrap: wrap;
+        background-color: transparent;
+        border-radius: 3px;
+        padding: 0.5rem 0rem;
+    }
+
+    .app-2 .footer a {
+        color: #666;
+    }
+
+    .app-2 .footer a:hover {
+        color: #888;
+    }
+
+    .keyboard {
+        transform: translateY(0%);
+    }
+}

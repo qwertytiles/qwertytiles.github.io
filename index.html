@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How fast can you type?">
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/png" href="icon.png"/>
+    <title>QWERTYTILES</title>
+</head>
+
+<body>
+
+    <div class="app-0">
+        <div class="app-1">
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+        </div>
+    </div>
+
+    <div class="app-2">
+        <div class="cont">
+            <div class="span">
+                <div class="title">score</div>
+                <div class="score scorediv">-</div>
+            </div>
+            <div class="span">
+                <div class="title">accuracy</div>
+                <div class="score accudiv">-</div>
+            </div>
+            <div class="span buttonspan">
+                <button onclick="replay()">restart</button>
+            </div>
+        </div>
+        <div class="footer">
+            <a href="mailto:playqwertytiles@gmail.com">contact</a>
+            <a href="https://www.buymeacoffee.com/qwertytiles">buy me a coffee</a>
+        </div>
+    </div>
+
+    <div class="keyboard">
+        <div class="row">
+            <div class="letter" onclick="presskey('q')">q</div>
+            <div class="letter" onclick="presskey('w')">w</div>
+            <div class="letter" onclick="presskey('e')">e</div>
+            <div class="letter" onclick="presskey('r')">r</div>
+            <div class="letter" onclick="presskey('t')">t</div>
+            <div class="letter" onclick="presskey('y')">y</div>
+            <div class="letter" onclick="presskey('u')">u</div>
+            <div class="letter" onclick="presskey('i')">i</div>
+            <div class="letter" onclick="presskey('o')">o</div>
+            <div class="letter" onclick="presskey('p')">p</div>
+        </div>
+        <div class="row">
+            <div class="letter" onclick="presskey('a')">a</div>
+            <div class="letter" onclick="presskey('s')">s</div>
+            <div class="letter" onclick="presskey('d')">d</div>
+            <div class="letter" onclick="presskey('f')">f</div>
+            <div class="letter" onclick="presskey('g')">g</div>
+            <div class="letter" onclick="presskey('h')">h</div>
+            <div class="letter" onclick="presskey('j')">j</div>
+            <div class="letter" onclick="presskey('k')">k</div>
+            <div class="letter" onclick="presskey('l')">l</div>
+        </div>
+        <div class="row">
+            <div class="letter" onclick="presskey('z')">z</div>
+            <div class="letter" onclick="presskey('x')">x</div>
+            <div class="letter" onclick="presskey('c')">c</div>
+            <div class="letter" onclick="presskey('v')">v</div>
+            <div class="letter" onclick="presskey('b')">b</div>
+            <div class="letter" onclick="presskey('n')">n</div>
+            <div class="letter" onclick="presskey('m')">m</div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
