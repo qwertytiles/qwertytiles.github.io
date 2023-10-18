@@ -10,14 +10,15 @@ let last;
 let score = 0;
 let miss = 0;
 let f = 1;
-let speed = 0.11;
+let speed = 0.4;
 
 
 function update() {
+    console.log(speed);
     let tiles = document.querySelectorAll(".tile");
     let screen = window.innerHeight;
     for (let i = 0; i < tiles.length; i++) {
-        position[i] += 3 * speed;
+        position[i] += 1 * speed;
         tiles[i].style.top = position[i] + "%";
         let rect = tiles[i].getBoundingClientRect();
         let rect2 = keyboard.getBoundingClientRect();
@@ -72,7 +73,7 @@ function replay() {
     score = 0;
     miss = 0;
     f = 1;
-    speed = 0.11;
+    speed = 0.4;
     app.style.filter = "blur(0px)";
     keyboard.style.filter = "blur(0px)";
     app2.style.display = "none";
@@ -93,7 +94,11 @@ window.addEventListener(
                 next.splice(0, 1);
                 createtile();
                 score++;
-                speed += 0.01;
+                if (speed > 4) {
+                    speed *= 1.01;
+                } else {
+                    speed *= 1.02;
+                }
                 playSound();
             } else {
                 miss++;
@@ -148,7 +153,11 @@ function presskey(kp) {
             next.splice(0, 1);
             createtile();
             score++;
-            speed += 0.01
+            if (speed > 4) {
+                speed *= 1.01;
+            } else {
+                speed *= 1.02;
+            }
             playSound();
         } else {
             miss++;
