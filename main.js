@@ -10,14 +10,14 @@ let last;
 let score = 0;
 let miss = 0;
 let f = 1;
-let speed = 0.09;
+let speed = 0.15;
 
 
 function update() {
     let tiles = document.querySelectorAll(".tile");
     let screen = window.innerHeight;
     for (let i = 0; i < tiles.length; i++) {
-        position[i] += 1 * speed;
+        position[i] += 3 * speed;
         tiles[i].style.top = position[i] + "%";
         let rect = tiles[i].getBoundingClientRect();
         let rect2 = keyboard.getBoundingClientRect();
@@ -31,7 +31,7 @@ function update() {
     }
 
     if (f != 0) {
-        setTimeout(update, 1);
+        requestAnimationFrame(update);
     } else {
         scorediv.innerHTML = score;
         accudiv.innerHTML = Math.floor(((score == 0 ? 1 : score) * 100) / ((score == 0 ? 1 : score) + miss)) + "%";
@@ -72,7 +72,7 @@ function replay() {
     score = 0;
     miss = 0;
     f = 1;
-    speed = 0.1;
+    speed = 0.15;
     app.style.filter = "blur(0px)";
     keyboard.style.filter = "blur(0px)";
     app2.style.display = "none";
@@ -93,7 +93,7 @@ window.addEventListener(
                 next.splice(0, 1);
                 createtile();
                 score++;
-                speed += 0.007;
+                speed += 0.01;
                 playSound();
             } else {
                 miss++;
@@ -148,7 +148,7 @@ function presskey(kp) {
             next.splice(0, 1);
             createtile();
             score++;
-            speed += 0.007
+            speed += 0.01
             playSound();
         } else {
             miss++;
