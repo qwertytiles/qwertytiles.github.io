@@ -10,7 +10,7 @@ let last;
 let score = 0;
 let miss = 0;
 let f = 1;
-let speed = 0.15;
+let speed = 0.11;
 
 
 function update() {
@@ -72,7 +72,7 @@ function replay() {
     score = 0;
     miss = 0;
     f = 1;
-    speed = 0.15;
+    speed = 0.11;
     app.style.filter = "blur(0px)";
     keyboard.style.filter = "blur(0px)";
     app2.style.display = "none";
