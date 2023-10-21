@@ -10,15 +10,18 @@ let last;
 let score = 0;
 let miss = 0;
 let f = 1;
-let speed = 0.4;
+let speed = 60;
+
+let fps = 60;
+let previousTime = performance.now();
 
 
-function update() {
-    console.log(speed);
+function update(timeStamp) {
+    fps = 1000 / (timeStamp - previousTime);
+    previousTime = timeStamp;
     let tiles = document.querySelectorAll(".tile");
-    let screen = window.innerHeight;
     for (let i = 0; i < tiles.length; i++) {
-        position[i] += 1 * speed;
+        position[i] += ((speed / fps) * 0.5);
         tiles[i].style.top = position[i] + "%";
         let rect = tiles[i].getBoundingClientRect();
         let rect2 = keyboard.getBoundingClientRect();
@@ -73,43 +76,43 @@ function replay() {
     score = 0;
     miss = 0;
     f = 1;
-    speed = 0.4;
+    speed = 60;
     app.style.filter = "blur(0px)";
     keyboard.style.filter = "blur(0px)";
     app2.style.display = "none";
-
+    previousTime = performance.now();
     createtile();
-    update();
+    requestAnimationFrame(update);
 }
 
 window.addEventListener(
     "keydown",
     (event) => {
         let kp = event.key.toLowerCase();
-        if (f == 1) {
-            if (kp == next[0]) {
-                let tiles = document.querySelectorAll(".tile");
-                tiles[0].remove();
-                position.splice(0, 1);
-                next.splice(0, 1);
-                createtile();
-                score++;
-                if (speed > 4) {
-                    speed *= 1.01;
-                } else {
-                    speed *= 1.02;
-                }
-                playSound();
-            } else {
-                miss++;
-            }
-        } else {
-            if (kp == ' ') {
-                replay();
-            }
-        }
+        presskey(kp);
     }
 );
+
+function presskey(kp) {
+    if (f == 1) {
+        if (kp == next[0]) {
+            let tiles = document.querySelectorAll(".tile");
+            tiles[0].remove();
+            position.splice(0, 1);
+            next.splice(0, 1);
+            createtile();
+            score++;
+            speed *= 1.02;
+            playSound();
+        } else {
+            miss++;
+        }
+    } else {
+        if (kp == ' ') {
+            replay();
+        }
+    }
+}
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var context = new AudioContext();
@@ -144,30 +147,5 @@ for (var t = 0; t < tones.length; t++) {
     notes.push(arr);
 }
 
-function presskey(kp) {
-    if (f == 1) {
-        if (kp == next[0]) {
-            let tiles = document.querySelectorAll(".tile");
-            tiles[0].remove();
-            position.splice(0, 1);
-            next.splice(0, 1);
-            createtile();
-            score++;
-            if (speed > 4) {
-                speed *= 1.01;
-            } else {
-                speed *= 1.02;
-            }
-            playSound();
-        } else {
-            miss++;
-        }
-    } else {
-        if (kp == ' ') {
-            replay();
-        }
-    }
-}
-
 createtile();
-update();
+requestAnimationFrame(update);
