@@ -45,6 +45,10 @@ body {
     text-transform: uppercase;
 }
 
+.appstart .textphone {
+    display: none;
+}
+
 .app-0 {
     font-family: "spaceregular";
     position: fixed;
@@ -261,5 +265,13 @@ body {
 
     .keyboard {
         transform: translateY(0%);
+    }
+    
+    .appstart .text {
+        display: none;
+    }
+    
+    .appstart .textphone {
+        display: block;
     }
 }
