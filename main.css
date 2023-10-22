@@ -47,6 +47,11 @@ body {
 
 .appstart .textphone {
     display: none;
+    text-align: center;
+    font-family: "spacebold";
+    font-size: 1rem;
+    color: #666;
+    text-transform: uppercase;
 }
 
 .app-0 {
