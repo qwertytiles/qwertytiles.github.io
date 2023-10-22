@@ -1,5 +1,6 @@
 let keyboard = document.querySelector(".keyboard");
 let app = document.querySelector(".app-1");
+let appstart = document.querySelector(".appstart");
 let app2 = document.querySelector(".app-2");
 let scorediv = document.querySelector(".scorediv");
 let accudiv = document.querySelector(".accudiv");
@@ -9,7 +10,7 @@ let next = [];
 let last;
 let score = 0;
 let miss = 0;
-let f = 1;
+let f = 0;
 let speed = 60;
 
 let fps = 60;
@@ -80,6 +81,7 @@ function replay() {
     app.style.filter = "blur(0px)";
     keyboard.style.filter = "blur(0px)";
     app2.style.display = "none";
+    appstart.style.display = "none";
     previousTime = performance.now();
     createtile();
     requestAnimationFrame(update);
@@ -146,6 +148,3 @@ for (var t = 0; t < tones.length; t++) {
     }
     notes.push(arr);
 }
-
-createtile();
-requestAnimationFrame(update);
