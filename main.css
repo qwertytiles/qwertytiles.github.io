@@ -11,6 +11,7 @@
 
 * {
     box-sizing: border-box;
+    user-select: none;
 }
 
 
@@ -41,8 +42,18 @@ body {
     text-align: center;
     font-family: "spacebold";
     font-size: 1rem;
-    color: #666;
+    color: #fff;
     text-transform: uppercase;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.2rem;
+    margin-top: 2rem;
+    background-color: #000;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.appstart .text:hover {
+    opacity: 0.9;
 }
 
 .appstart .textphone {
@@ -52,6 +63,52 @@ body {
     font-size: 1rem;
     color: #666;
     text-transform: uppercase;
+}
+
+.appstart .settings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.appstart .inner {
+    width: 100%;
+    max-width: 500px;
+}
+
+.appstart .settings label {
+    font-size: 0.9rem;
+    font-family: "spacebold";
+    color: #888;
+    text-transform: uppercase;
+    padding: 0.6rem 1.2rem;
+    background-color: #eee;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.appstart .settings label:hover {
+    opacity: 0.9;
+}
+
+.appstart .settings input {
+    display: none;
+}
+
+#lm:checked~#labellm {
+    background-color: #3498db;
+    color: #fff;
+}
+
+#cm:checked~#labelcm {
+    background-color: #3498db;
+    color: #fff;
+}
+
+#pm:checked~#labelpm {
+    background-color: #3498db;
+    color: #fff;
 }
 
 .app-0 {
@@ -187,6 +244,7 @@ body {
     text-transform: uppercase;
     text-decoration: none;
     transition: 0.1s ease;
+    cursor: pointer;
 }
 
 .app-2 .footer a:hover {
@@ -271,11 +329,11 @@ body {
     .keyboard {
         transform: translateY(0%);
     }
-    
+
     .appstart .text {
         display: none;
     }
-    
+
     .appstart .textphone {
         display: block;
     }
