@@ -4,6 +4,7 @@ let appstart = document.querySelector(".appstart");
 let app2 = document.querySelector(".app-2");
 let scorediv = document.querySelector(".scorediv");
 let accudiv = document.querySelector(".accudiv");
+let gamemode = document.querySelectorAll(".settings input");
 let letters = "abcdefghijklmnopqrstuvwxyz";
 let position = [];
 let next = [];
@@ -77,7 +78,15 @@ function replay() {
     score = 0;
     miss = 0;
     f = 1;
-    speed = 60;
+    if (gamemode[0].checked) {
+        speed = 20;
+    }
+    if (gamemode[1].checked) {
+        speed = 60;
+    }
+    if (gamemode[2].checked) {
+        speed = 120;
+    }
     app.style.filter = "blur(0px)";
     keyboard.style.filter = "blur(0px)";
     app2.style.display = "none";
@@ -104,7 +113,15 @@ function presskey(kp) {
             next.splice(0, 1);
             createtile();
             score++;
-            speed *= 1.02;
+            if (gamemode[0].checked) {
+                speed *= 1;
+            }
+            if (gamemode[1].checked) {
+                speed *= 1.01;
+            }
+            if (gamemode[2].checked) {
+                speed *= 1.03;
+            }
             playSound();
         } else {
             miss++;
@@ -114,6 +131,10 @@ function presskey(kp) {
             replay();
         }
     }
+}
+
+function opensettings() {
+    appstart.style.display = "flex";
 }
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
