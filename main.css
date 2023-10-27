@@ -73,7 +73,8 @@ body {
 
 .appstart .inner {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
+    padding: 1rem;
 }
 
 .appstart .settings label {
@@ -328,13 +329,5 @@ body {
 
     .keyboard {
         transform: translateY(0%);
-    }
-
-    .appstart .text {
-        display: none;
-    }
-
-    .appstart .textphone {
-        display: block;
     }
 }
