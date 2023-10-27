@@ -79,7 +79,7 @@ function replay() {
     miss = 0;
     f = 1;
     if (gamemode[0].checked) {
-        speed = 30;
+        speed = 20;
     }
     if (gamemode[1].checked) {
         speed = 60;
