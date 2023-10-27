@@ -37,6 +37,7 @@
             </div>
         </div>
         <div class="footer">
+            <a onclick="opensettings()">settings</a>
             <a href="mailto:playqwertytiles@gmail.com">contact</a>
             <a href="https://www.buymeacoffee.com/apollonue">buy me a coffee</a>
         </div>
@@ -77,9 +78,15 @@
         </div>
     </div>
 
-    <div class="appstart" onclick="presskey(' ')">
-        <div class="text">press spacebar to start</div>
-        <div class="textphone">tap screen to start</div>
+    <div class="appstart">
+        <div class="inner">
+            <div class="settings">
+                <input type="radio" name="gamemode" id="lm"><label for="lm" id="labellm">learning mode</label>
+                <input type="radio" name="gamemode" id="cm" checked><label for="cm" id="labelcm">casual mode</label>
+                <input type="radio" name="gamemode" id="pm"><label for="pm" id="labelpm">pro mode</label>
+            </div>
+            <div class="text" onclick="presskey(' ')">start game</div>
+        </div>
     </div>
 
     <script src="main.js"></script>
