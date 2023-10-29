@@ -1,9 +1,4 @@
 @font-face {
-    font-family: "spaceregular";
-    src: url("spacemono/SpaceMono-Regular.ttf");
-}
-
-@font-face {
     font-family: "spacebold";
     src: url("spacemono/SpaceMono-Bold.ttf");
 }
@@ -12,6 +7,7 @@
 * {
     box-sizing: border-box;
     user-select: none;
+    font-family: "spacebold";
 }
 
 
@@ -40,7 +36,6 @@ body {
 
 .appstart .text {
     text-align: center;
-    font-family: "spacebold";
     font-size: 1rem;
     color: #fff;
     text-transform: uppercase;
@@ -59,7 +54,6 @@ body {
 .appstart .textphone {
     display: none;
     text-align: center;
-    font-family: "spacebold";
     font-size: 1rem;
     color: #666;
     text-transform: uppercase;
@@ -79,7 +73,6 @@ body {
 
 .appstart .settings label {
     font-size: 0.9rem;
-    font-family: "spacebold";
     color: #888;
     text-transform: uppercase;
     padding: 0.6rem 1.2rem;
@@ -113,7 +106,6 @@ body {
 }
 
 .app-0 {
-    font-family: "spaceregular";
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -154,7 +146,6 @@ body {
 }
 
 .app-0 .app-1 .tile .letter {
-    font-family: "spacebold";
     font-size: 4rem;
     text-transform: uppercase;
     color: #fff;
@@ -162,7 +153,6 @@ body {
 
 
 .app-2 {
-    font-family: "spacebold";
     position: fixed;
     top: 50%;
     left: 50%;
@@ -198,7 +188,6 @@ body {
     color: #000;
     line-height: 3rem;
     text-transform: uppercase;
-    font-family: "spacebold";
 }
 
 .app-2 .cont .buttonspan {
@@ -209,7 +198,6 @@ body {
     padding: 1rem 2rem;
     width: 100%;
     font-size: 2rem;
-    font-family: "spacebold";
     color: #fff;
     background-color: #2ecc71;
     border: 0;
@@ -275,7 +263,6 @@ body {
     text-align: center;
     width: 10%;
     padding: 1.5rem 0rem;
-    font-family: "spaceregular";
     font-size: 1.2rem;
 }
 
