@@ -84,7 +84,8 @@
                 <input type="radio" name="gamemode" id="lm"><label for="lm" id="labellm">learning mode</label>
                 <input type="radio" name="gamemode" id="cm" checked><label for="cm" id="labelcm">casual mode</label>
                 <input type="radio" name="gamemode" id="pm"><label for="pm" id="labelpm">pro mode</label>
-                <input type="radio" name="sound" id="toggleSound" checked><label for="toggleSound" id="labelToggleSound">Toggle Sound</label>
+                <label for="toggleSound" id="labelSound">Mute Sound</label>
+                <input type="checkbox" id="toggleSound" onclick="toggleSound()">
             </div>
             <div class="text" onclick="presskey(' ')">start game</div>
         </div>

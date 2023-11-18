@@ -105,6 +105,12 @@ body {
     color: #fff;
 }
 
+#labelSound.muted {
+    background-color: #3498db;
+    color: #fff;
+}
+
+
 .app-0 {
     position: fixed;
     width: 100%;
