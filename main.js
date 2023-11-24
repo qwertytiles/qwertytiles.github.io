@@ -5,6 +5,8 @@ let app2 = document.querySelector(".app-2");
 let scorediv = document.querySelector(".scorediv");
 let accudiv = document.querySelector(".accudiv");
 let gamemode = document.querySelectorAll(".settings input");
+let soundCheckbox = document.getElementById("toggleSound");
+let isSoundMuted = false;
 let letters = "abcdefghijklmnopqrstuvwxyz";
 let position = [];
 let next = [];
@@ -16,6 +18,15 @@ let speed = 60;
 
 let fps = 60;
 let previousTime = performance.now();
+
+function toggleSound() {
+    isSoundMuted = !isSoundMuted;
+    if (isSoundMuted) {
+        labelSound.classList.add("muted");
+    } else {
+        labelSound.classList.remove("muted");
+    }
+}
 
 
 function update(timeStamp) {
@@ -140,15 +151,17 @@ function opensettings() {
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var context = new AudioContext();
 function playSound() {
-    arr = notes[(score - 1) % tones.length];
-    var buf = new Float32Array(arr.length);
-    for (var i = 0; i < arr.length; i++) buf[i] = arr[i]
-    var buffer = context.createBuffer(1, buf.length, context.sampleRate)
-    buffer.copyToChannel(buf, 0)
-    var source = context.createBufferSource();
-    source.buffer = buffer;
-    source.connect(context.destination);
-    source.start(0);
+    if (!isSoundMuted) {
+        arr = notes[(score - 1) % tones.length];
+        var buf = new Float32Array(arr.length);
+        for (var i = 0; i < arr.length; i++) buf[i] = arr[i]
+        var buffer = context.createBuffer(1, buf.length, context.sampleRate)
+        buffer.copyToChannel(buf, 0)
+        var source = context.createBufferSource();
+        source.buffer = buffer;
+        source.connect(context.destination);
+        source.start(0);
+    }
 }
 
 function sineWaveAt(sampleNumber, tone) {
