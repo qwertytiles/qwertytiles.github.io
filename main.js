@@ -186,7 +186,7 @@ var context = new AudioContext();
 
 var notes = [];
 var volume = 0.5;
-var seconds = 0.2;
+var seconds = 0.3;
 var tones = [392.00, 311.13, 293.66, 261.63, 261.63, 293.66, 311.13, 261.63, 311.13, 392.00, 415.30, 392.00, 349.23, 349.23, 293.66, 261.63, 246.94, 196.00, 246.94, 293.66, 246.94, 293.66, 349.23, 392.00, 415.30, 369.99, 392.00];
 
 // Load in notes 
@@ -196,13 +196,11 @@ for (var t = 0; t < tones.length; t++) {
     endOfFadeIn = samples / 4;
     startOfFadeOut = samples * 3 / 4;
 
-    envelope = linearEnvelope(startOfFadeIn, startOfFadeOut, samples);
+    let envelope = linearEnvelope(endOfFadeIn, startOfFadeOut, samples);
     envelopeMax = Math.max.apply(null, envelope)
 
     for (var i = 0; i < samples; i++) {
         arr[i] = sineWaveAt(i, tones[t]) * envelope[i]/envelopeMax/2;
     }
-
-    console.log(notes);
     notes.push(arr);
 }
