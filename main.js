@@ -148,8 +148,6 @@ function opensettings() {
     appstart.style.display = "flex";
 }
 
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-var context = new AudioContext();
 function playSound() {
     if (!isSoundMuted) {
         arr = notes[(score - 1) % tones.length];
@@ -169,16 +167,40 @@ function sineWaveAt(sampleNumber, tone) {
     return Math.sin(sampleNumber / (sampleFreq / (Math.PI * 2)))
 }
 
+function linearEnvelope(endOfFadeIn, startOfFadeOut, samples) {
+    var envelope = new Array(samples).fill(1);
+    for (var i = 0; i < samples; i++)
+    {
+        if (i < endOfFadeIn)
+            envelope[i] = i;
+        else if (i < startOfFadeOut) 
+            envelope[i] = envelope[i-1];
+        else 
+            envelope[i] = envelope[i-1]-1;   
+    }
+    return envelope
+}
+
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+var context = new AudioContext();
 
 var notes = [];
 var volume = 0.5;
-var seconds = 0.2;
+var seconds = 0.3;
 var tones = [392.00, 311.13, 293.66, 261.63, 261.63, 293.66, 311.13, 261.63, 311.13, 392.00, 415.30, 392.00, 349.23, 349.23, 293.66, 261.63, 246.94, 196.00, 246.94, 293.66, 246.94, 293.66, 349.23, 392.00, 415.30, 369.99, 392.00];
 
+// Load in notes 
 for (var t = 0; t < tones.length; t++) {
     var arr = [];
-    for (var i = 0; i < context.sampleRate * seconds; i++) {
-        arr[i] = sineWaveAt(i, tones[t]) * volume;
+    var samples = context.sampleRate * seconds;
+    endOfFadeIn = samples / 4;
+    startOfFadeOut = samples * 3 / 4;
+
+    let envelope = linearEnvelope(endOfFadeIn, startOfFadeOut, samples);
+    envelopeMax = Math.max.apply(null, envelope)
+
+    for (var i = 0; i < samples; i++) {
+        arr[i] = sineWaveAt(i, tones[t]) * envelope[i]/envelopeMax/2;
     }
     notes.push(arr);
 }
