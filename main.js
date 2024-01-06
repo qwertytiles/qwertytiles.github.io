@@ -128,7 +128,7 @@ function presskey(kp) {
                 speed *= 1;
             }
             if (gamemode[1].checked) {
-                    speed *= 1.01;
+                speed *= 1.01;
             }
             if (gamemode[2].checked) {
                 speed *= 1.03;
