@@ -128,10 +128,7 @@ function presskey(kp) {
                 speed *= 1;
             }
             if (gamemode[1].checked) {
-                if (speed < 120)
                     speed *= 1.01;
-                else 
-                    speed *= 1.001;
             }
             if (gamemode[2].checked) {
                 speed *= 1.03;
@@ -199,7 +196,7 @@ for (var t = 0; t < tones.length; t++) {
     endOfFadeIn = samples / 4;
     startOfFadeOut = samples * 3 / 4;
 
-    envelope = getEnvelope(startOfFadeIn, startOfFadeOut, samples);
+    envelope = linearEnvelope(startOfFadeIn, startOfFadeOut, samples);
     envelopeMax = Math.max.apply(null, envelope)
 
     for (var i = 0; i < samples; i++) {
