@@ -4,7 +4,6 @@ let appstart = document.querySelector(".appstart");
 let app2 = document.querySelector(".app-2");
 let scorediv = document.querySelector(".scorediv");
 let accudiv = document.querySelector(".accudiv");
-let gamemode = document.querySelectorAll(".settings input");
 let soundCheckbox = document.getElementById("toggleSound");
 let isSoundMuted = false;
 let letters = "abcdefghijklmnopqrstuvwxyz";
@@ -89,15 +88,7 @@ function replay() {
     score = 0;
     miss = 0;
     f = 1;
-    if (gamemode[0].checked) {
-        speed = 20;
-    }
-    if (gamemode[1].checked) {
-        speed = 60;
-    }
-    if (gamemode[2].checked) {
-        speed = 120;
-    }
+    speed = 60;
     app.style.filter = "blur(0px)";
     keyboard.style.filter = "blur(0px)";
     app2.style.display = "none";
@@ -124,15 +115,7 @@ function presskey(kp) {
             next.splice(0, 1);
             createtile();
             score++;
-            if (gamemode[0].checked) {
-                speed *= 1;
-            }
-            if (gamemode[1].checked) {
-                speed *= 1.01;
-            }
-            if (gamemode[2].checked) {
-                speed *= 1.03;
-            }
+            speed *= 1.01;
             playSound();
         } else {
             miss++;
