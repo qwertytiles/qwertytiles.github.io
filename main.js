@@ -4,29 +4,21 @@ let appstart = document.querySelector(".appstart");
 let app2 = document.querySelector(".app-2");
 let scorediv = document.querySelector(".scorediv");
 let accudiv = document.querySelector(".accudiv");
-let soundCheckbox = document.getElementById("toggleSound");
-let isSoundMuted = false;
+let trackNumber = document.getElementById("trackNumber").value;
 let letters = "abcdefghijklmnopqrstuvwxyz";
-let position = [];
-let next = [];
-let last;
-let score = 0;
-let miss = 0;
-let f = 0;
-let speed = 60;
+let position = [], next = [], notes = [], seconds = 0.3, last, context, score = 0, miss = 0, f = 0, speed = 60, fps = 60, previousTime = performance.now();
+let tracks = [
+    [0],
+    [392.00, 311.13, 293.66, 261.63, 261.63, 293.66, 311.13, 261.63, 311.13, 392.00, 415.30, 392.00, 349.23, 349.23, 293.66, 261.63, 246.94, 196.00, 246.94, 293.66, 246.94, 293.66, 349.23, 392.00, 415.30, 369.99, 392.00],
+];
 
-let fps = 60;
-let previousTime = performance.now();
-
-function toggleSound() {
-    isSoundMuted = !isSoundMuted;
-    if (isSoundMuted) {
-        labelSound.classList.add("muted");
-    } else {
-        labelSound.classList.remove("muted");
+window.addEventListener(
+    "keydown",
+    (event) => {
+        let kp = event.key.toLowerCase();
+        presskey(kp);
     }
-}
-
+);
 
 function update(timeStamp) {
     fps = 1000 / (timeStamp - previousTime);
@@ -79,32 +71,19 @@ function createtile() {
 }
 
 function replay() {
+    trackNumber = document.getElementById("trackNumber").value;
     let tiles = document.querySelectorAll(".tile");
-    for (let i = 0; i < tiles.length; i++) {
-        tiles[i].remove();
-    }
-    position = [];
-    next = [];
-    score = 0;
-    miss = 0;
-    f = 1;
-    speed = 60;
+    for (let i = 0; i < tiles.length; i++) { tiles[i].remove(); }
+    position = [], next = [], score = 0, miss = 0, f = 1, speed = 60;
     app.style.filter = "blur(0px)";
     keyboard.style.filter = "blur(0px)";
     app2.style.display = "none";
     appstart.style.display = "none";
     previousTime = performance.now();
+    loadAudio();
     createtile();
     requestAnimationFrame(update);
 }
-
-window.addEventListener(
-    "keydown",
-    (event) => {
-        let kp = event.key.toLowerCase();
-        presskey(kp);
-    }
-);
 
 function presskey(kp) {
     if (f == 1) {
@@ -115,7 +94,7 @@ function presskey(kp) {
             next.splice(0, 1);
             createtile();
             score++;
-            speed *= 1.01;
+            speed *= 1.02;
             playSound();
         } else {
             miss++;
@@ -132,58 +111,49 @@ function opensettings() {
 }
 
 function playSound() {
-    if (!isSoundMuted) {
-        arr = notes[(score - 1) % tones.length];
-        var buf = new Float32Array(arr.length);
-        for (var i = 0; i < arr.length; i++) buf[i] = arr[i]
-        var buffer = context.createBuffer(1, buf.length, context.sampleRate)
-        buffer.copyToChannel(buf, 0)
-        var source = context.createBufferSource();
-        source.buffer = buffer;
-        source.connect(context.destination);
-        source.start(0);
-    }
+    arr = notes[(score - 1) % tracks[trackNumber].length];
+    let buf = new Float32Array(arr.length);
+    for (let i = 0; i < arr.length; i++) buf[i] = arr[i]
+    let buffer = context.createBuffer(1, buf.length, context.sampleRate)
+    buffer.copyToChannel(buf, 0)
+    let source = context.createBufferSource();
+    source.buffer = buffer;
+    source.connect(context.destination);
+    source.start(0);
 }
 
 function sineWaveAt(sampleNumber, tone) {
-    var sampleFreq = context.sampleRate / tone
+    let sampleFreq = context.sampleRate / tone
     return Math.sin(sampleNumber / (sampleFreq / (Math.PI * 2)))
 }
 
 function linearEnvelope(endOfFadeIn, startOfFadeOut, samples) {
-    var envelope = new Array(samples).fill(1);
-    for (var i = 0; i < samples; i++)
-    {
+    let envelope = new Array(samples).fill(1);
+    for (let i = 0; i < samples; i++) {
         if (i < endOfFadeIn)
             envelope[i] = i;
-        else if (i < startOfFadeOut) 
-            envelope[i] = envelope[i-1];
-        else 
-            envelope[i] = envelope[i-1]-1;   
+        else if (i < startOfFadeOut)
+            envelope[i] = envelope[i - 1];
+        else
+            envelope[i] = envelope[i - 1] - 1;
     }
     return envelope
 }
 
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-var context = new AudioContext();
-
-var notes = [];
-var volume = 0.5;
-var seconds = 0.3;
-var tones = [392.00, 311.13, 293.66, 261.63, 261.63, 293.66, 311.13, 261.63, 311.13, 392.00, 415.30, 392.00, 349.23, 349.23, 293.66, 261.63, 246.94, 196.00, 246.94, 293.66, 246.94, 293.66, 349.23, 392.00, 415.30, 369.99, 392.00];
-
-// Load in notes 
-for (var t = 0; t < tones.length; t++) {
-    var arr = [];
-    var samples = context.sampleRate * seconds;
-    endOfFadeIn = samples / 4;
-    startOfFadeOut = samples * 3 / 4;
-
-    let envelope = linearEnvelope(endOfFadeIn, startOfFadeOut, samples);
-    envelopeMax = Math.max.apply(null, envelope)
-
-    for (var i = 0; i < samples; i++) {
-        arr[i] = sineWaveAt(i, tones[t]) * envelope[i]/envelopeMax/2;
+function loadAudio() {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    context = new AudioContext();
+    notes = [];
+    for (let t = 0; t < tracks[trackNumber].length; t++) {
+        let arr = [];
+        let samples = context.sampleRate * seconds;
+        endOfFadeIn = samples / 4;
+        startOfFadeOut = samples * 3 / 4;
+        let envelope = linearEnvelope(endOfFadeIn, startOfFadeOut, samples);
+        envelopeMax = Math.max.apply(null, envelope)
+        for (let i = 0; i < samples; i++) {
+            arr[i] = sineWaveAt(i, tracks[trackNumber][t]) * envelope[i] / envelopeMax / 2;
+        }
+        notes.push(arr);
     }
-    notes.push(arr);
 }
