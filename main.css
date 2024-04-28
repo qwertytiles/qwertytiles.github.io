@@ -34,8 +34,9 @@ body {
     justify-content: center;
 }
 
-.appstart .text {
+.appstart .startGameButton {
     text-align: center;
+    width: 100%;
     font-size: 1rem;
     color: #fff;
     text-transform: uppercase;
@@ -45,10 +46,25 @@ body {
     background-color: #000;
     cursor: pointer;
     transition: 0.1s ease;
+    border: 0;
 }
 
-.appstart .text:hover {
+.appstart .startGameButton:hover {
     opacity: 0.9;
+}
+
+.appstart .settings select {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.2rem 1.2rem;
+    border-radius: 0.2rem;
+    text-transform: uppercase;
+}
+
+.appstart .settings label {
+    white-space: nowrap;
+    margin-right: 1rem;
+    text-transform: uppercase;
 }
 
 .appstart .textphone {
@@ -70,46 +86,6 @@ body {
     max-width: 800px;
     padding: 1rem;
 }
-
-.appstart .settings label {
-    font-size: 0.9rem;
-    color: #888;
-    text-transform: uppercase;
-    padding: 0.6rem 1.2rem;
-    background-color: #eee;
-    border-radius: 0.2rem;
-    cursor: pointer;
-    transition: 0.1s ease;
-}
-
-.appstart .settings label:hover {
-    opacity: 0.9;
-}
-
-.appstart .settings input {
-    display: none;
-}
-
-#lm:checked~#labellm {
-    background-color: #3498db;
-    color: #fff;
-}
-
-#cm:checked~#labelcm {
-    background-color: #3498db;
-    color: #fff;
-}
-
-#pm:checked~#labelpm {
-    background-color: #3498db;
-    color: #fff;
-}
-
-#labelSound.muted {
-    background-color: #3498db;
-    color: #fff;
-}
-
 
 .app-0 {
     position: fixed;
