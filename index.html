@@ -81,10 +81,13 @@
     <div class="appstart">
         <div class="inner">
             <div class="settings">
-                <label for="toggleSound" id="labelSound">Mute Sound</label>
-                <input type="checkbox" id="toggleSound" onclick="toggleSound()">
+                <label for="tune">select track:</label>
+                <select name="tune" id="trackNumber">
+                    <option value="1">shostakovich waltz 2</option>
+                    <option value="0">mute sound</option>
+                </select>
             </div>
-            <div class="text" onclick="presskey(' ')">start game</div>
+            <button class="startGameButton" onclick="presskey(' ')">start game</button>
         </div>
     </div>
 
